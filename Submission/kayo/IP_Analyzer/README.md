@@ -104,10 +104,6 @@ Enter IP Address: 192.168.10.15
 
 ![output](images/output.png)
 
-```
-
----
-
 ##  Limitations
 
 * IPv6 validation is basic (not full standard)
