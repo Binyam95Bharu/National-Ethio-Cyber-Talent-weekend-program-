@@ -1,0 +1,77 @@
+Assignment from week-two
+Telegram scenario
+
+The Telegram Message Journey (OSI Model)
+The OSI Flow
+Layer 7 (Application): You hit "Send." Telegram converts your text into a digital message.
+Layer 6 (Presentation): The text is encrypted with AES-256 and RSA (MTProto) and formatted into JSON or a similar data structure.
+Layer 5 (Session): The app checks if your secure link to the Telegram server is still active; if not, it re-syncs.
+Layer 4 (Transport): The message is chopped into pieces (segments). TCP ensures every piece arrives in order.
+Layer 3 (Network): Your phone attaches your IP address and the server's IP address to each packet.
+Layer 2 (Data Link): Packets are put into "frames" that carry the physical MAC address of your router.
+Layer 1 (Physical): Your phone’s antenna sends the data out as radio waves (Wi-Fi/LTE).
+_______________________________________________________________________________________
+Potential Attacks at Each Layer 
+Each layer presents unique vulnerabilities that attackers can exploit to disrupt or intercept your communication. [11] 
+
+* Layer 7 (Application):
+* Exploits/Malware: Malicious bots or "infostealers" can exfiltrate your data.
+   * SQL Injection: Attempting to manipulate the backend database through input fields.
+* Layer 6 (Presentation):
+* Phishing: Tricking users into entering credentials on fake login screens.
+   * Encryption Weakness: Exploiting flaws in formatting or encryption protocols (like rare MTProto reordering attacks).
+* Layer 5 (Session):
+* Session Hijacking: Stealing session IDs or tokens to impersonate your account without needing a password.
+* Layer 4 (Transport):
+* SYN Flood: A type of DoS (Denial of Service) attack that overwhelms the server's ability to manage connections.
+   * Reconnaissance: Scanning ports to find open entry points.
+* Layer 3 (Network):
+* IP Spoofing: Sending packets with forged IP addresses to bypass security filters.
+   * MITM (Man-in-the-Middle): Intercepting traffic between you and the server to eavesdrop or modify messages.
+* Layer 2 (Data Link):
+* ARP Poisoning/MAC Spoofing: Tricking a local network switch into sending your data to the attacker's device.
+* Layer 1 (Physical):
+* Jamming/Sniffing: Interfering with wireless signals or using "sniffers" to capture raw data as it travels through the air or cables.
+   * Physical Damage: Cutting fiber optic cables or destroying hardware to cause a total blackout. 
+
+______________________________________________________________________________________________   
+30 of the most common port numbers categorized by their function:
+
+Web and File Services
+* 20 (TCP): FTP Data – Used for the actual transfer of file data.
+* 21 (TCP): FTP Control – Used for sending commands and login information to a file server.
+* 80 (TCP): HTTP – The standard port for unencrypted web traffic.
+* 443 (TCP): HTTPS – The secure version of HTTP, using encryption (SSL/TLS) for safe web browsing.
+* 8080 (TCP): HTTP Proxy – Often used as an alternative to port 80 or for web proxy services. [1, 4, 5, 6, 7, 8] 
+Remote Access and Management
+* 22 (TCP): SSH – Secure Shell; used for secure remote login and file transfers.
+* 23 (TCP): Telnet – An older, unencrypted protocol for remote terminal access.
+* 3389 (TCP): RDP – Remote Desktop Protocol; used to remotely control Windows computers.
+* 5900 (TCP): VNC – Virtual Network Computing; another common protocol for remote desktop access.
+* 2082/2083 (TCP): cPanel/SSL – Standard ports for managing web hosting via the cPanel interface. 
+Email Services
+* 25 (TCP): SMTP – Simple Mail Transfer Protocol; used primarily for sending email between servers.
+* 110 (TCP): POP3 – Post Office Protocol; used by email clients to retrieve messages from a server.
+* 143 (TCP): IMAP – Internet Message Access Protocol; allows users to access and manage email stored on a server.
+* 465 (TCP): SMTPS – Secure SMTP for encrypted email sending.
+* 587 (TCP): SMTP Submission – The modern port for email clients to submit outgoing mail.
+* 993 (TCP): IMAPS – Secure IMAP over SSL/TLS.
+* 995 (TCP): POP3S – Secure POP3 over SSL/TLS. 
+Network Infrastructure
+* 53 (TCP/UDP): DNS – Domain Name System; translates human-readable domain names (e.g., google.com) into IP addresses.
+* 67/68 (UDP): DHCP – Dynamic Host Configuration Protocol; automatically assigns IP addresses to devices on a network.
+* 123 (UDP): NTP – Network Time Protocol; synchronizes the clocks of computers across a network.
+* 161/162 (UDP): SNMP – Simple Network Management Protocol; used for monitoring and managing network devices like routers and switches. 
+Directory and Database Services
+* 389 (TCP/UDP): LDAP – Lightweight Directory Access Protocol; used for accessing central directory services.
+* 445 (TCP): SMB/CIFS – Server Message Block; used for file and printer sharing in Windows environments.
+* 1433 (TCP): MSSQL – Default port for Microsoft SQL Server database connections.
+* 1521 (TCP): Oracle – Default port for Oracle database listeners.
+* 3306 (TCP): MySQL – Standard port for MySQL and MariaDB databases.
+* 5432 (TCP): PostgreSQL – Default port for PostgreSQL databases. 
+Specialized Communication
+* 500 (UDP): ISAKMP – Used for establishing security associations (VPN tunnels) in IPsec.
+* 1194 (UDP/TCP): OpenVPN – The standard port for OpenVPN virtual private network services.
+* 5060 (TCP/UDP): SIP – Session Initiation Protocol; used for initiating VoIP (Voice over IP) and video calls. 
+
+

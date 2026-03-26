@@ -1,0 +1,44 @@
+WEEK-1
+
+Cybersecurity :- the practice of protecting systems, networks, and programs from digital 
+attacks; what makes cyber different from other security system is its coverage which is,
+found everywhere On land
+On ocean
+On space
+On air
+_________________________________________________________________________________________
+Core Principles: The CIA Triad
+The "CIA Triad" is the foundational model for cybersecurity: 
+
+Confidentiality: Ensuring only authorized users can access sensitive data.
+Integrity: Guaranteeing that data remains accurate and hasn't been tampered with.
+Availability: Ensuring that systems and data are accessible when needed.
+
+Linux is considered the backbone of modern cybersecurity serving as the primary 
+operating system for both attackers and defenders. it is used instead of windows because it
+ is open source, and to avoiding self-sabotage.
+ _________________________________________________________________________________________
+Cyber is classifed into two teams:
+Defense(Blue teaming)
+Offense(Red teaming)
+Blue :- Security operation(SOC),incident report(IR),digital forensic.they are expected to 
+detect,block and mitigate threats continously(24/7),considered to be a trail ground.
+Red:- penetration testing, vulnerability, red team.they exploit weaknesses to reach a target,
+it a time boxed task.considered to be a battle ground.
+Ethio-cert the largest SOC/ defense team in Ethiopia
+____________________________________________________________________________________________
+Sunday
+
+File system hierarchy standard
+The root directory (/) is the starting point for all files. 
+* /bin & /sbin: Essential executable programs (binaries). /bin contains command for all 
+users (like ls or cp), while /sbin is for system administration (like reboot).
+* /etc: The "nerve center" containing all system-wide configuration files.
+* /home: Personal space for regular users (e.g., /home/username).
+* /root: The separate home directory for the system administrator (root user).
+* /var: Stores "variable" data like system logs (/var/log) and databases.
+* /tmp: Temporary files created by apps; usually wiped on reboot.
+* /usr: Contains user-related programs and libraries. Modern distros often link /bin to /usr/
+bin.
+* /boot: Vital files for starting the system, including the Linux kernel.
+* /dev: Location of all hardware device files.

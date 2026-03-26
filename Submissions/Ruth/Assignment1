@@ -1,0 +1,40 @@
+Task: What is the equivalent of a 741 permission in symbolic notation?
+7 (Owner): Read, Write, and Execute  rwx
+4 (Group): Read only r
+1 (Others): Execute only x
+Result: rwxr--x
+
+Task: What is the equivalent of a 500 permission in symbolic notation?
+5 (Owner): Read and Execute r-x
+0 (Group): No permissions 
+0 (Others): No permissions 
+Result: r-x
+
+Task: What is the numeric equivalent of -r-xrw-r--?
+To find the numeric value, we break the string into groups of three (ignoring the first dash which signifies the file type):
+Owner (r-x): 4 (read) + 0 + 1 (execute) = 5
+Group (rw-): 4 (read) + 2 (write) + 0 = 6
+Others (r--): 4 (read) + 0 + 0 = 4
+Result: 564
+
+Take a 644 file (rw-r--r--) and make it executable for everyone while keeping existing Read/Write settings.
+Owner:(execute) = 7 (rwx)
+Group:(execute) = 5 (r-x)
+Others:(execute) = 5 (r-x)
+Numeric Code: 755
+
+Writable by Owner and Group and readable by everyone (including Others)
+Owner: 6 (rw-)
+Group: 6 (rw-)
+Others: 4 (r--)
+Octal Command: chmod 664 [filename]
+
+Task: Convert binary 110 100 000 to a chmod command.
+110: 4+2+0=6
+100: 4+0+0=4
+000: 
+
+Task: What happens if you run chmod 000 secret.txt? Can the Owner cat it without sudo?
+What happens: All permissions are stripped away. No one (Owner, Group, or Others) has permission to read, write, or execute the file.
+Can the Owner cat it? No. Even though they own the file, the system checks the permission bits first. Without "read" permission (
+), the command will return "Permission denied." Only a superuser (using sudo) can bypass these bits to read the file.
