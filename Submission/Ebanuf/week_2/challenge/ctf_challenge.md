@@ -88,7 +88,7 @@ FLAG{appended_zip}
 
 ---
 
-## Step 4: Find Flag 4 (using `steghide` and password cracking)
+## Step 3: Find Flag 4 (using `steghide` and password cracking)
 
 1. Use a password-cracker (like `stegseek` or a custom cracker) to find the passphrase:
 
