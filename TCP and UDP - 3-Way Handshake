@@ -1,0 +1,123 @@
+TCP and UDP - 3-Way Handshake
+1. TCP (Transmission Control Protocol)
+
+TCP is a connection-oriented transport protocol that guarantees reliable delivery of data between applications.
+
+Key Characteristics:
+
+Reliability is the core feature of TCP. Every packet sent must be acknowledged by the receiver. If an acknowledgment is not received within a specified timeout, the packet is automatically retransmitted. 
+This ensures that all data eventually reaches its destination.
+
+Ordering ensures that packets arrive in the correct sequence. Each packet carries a sequence number, allowing the receiver to reassemble data in the proper order even if packets arrive 
+out of order due to network routing variations.
+
+Connection-oriented means TCP establishes a formal connection before any data transfer occurs. The three-way handshake synchronizes both endpoints, negotiates parameters,
+and reserves resources for the conversation.
+
+Flow Control prevents a fast sender from overwhelming a slow receiver. TCP uses a sliding window mechanism where the receiver advertises how much data it can accept, 
+allowing the sender to adjust transmission rates accordingly.
+
+Error Checking is performed through checksums on both headers and data. Corrupted packets are discarded and treated as lost, triggering retransmission from the sender.
+
+Common Use Cases: Web browsing (HTTP/HTTPS), email (SMTP, IMAP, POP3), file transfer (FTP, SFTP), messaging applications, database connections, and any application where data integrity is critical.
+2. TCP 3-Way Handshake
+
+The three-way handshake establishes a reliable TCP connection between a client and server before any data transfer occurs.
+
+Step 1: SYN
+
+The client initiates the connection by sending a TCP segment with the SYN flag set. 
+This packet contains an initial sequence number (ISN), which is a randomly chosen value that marks the starting point for byte counting. The client enters SYN-SENT state and waits for a response.
+
+Step 2: SYN-ACK
+
+The server receives the SYN packet and responds with a segment containing both SYN and ACK flags. 
+The acknowledgment number is set to the client's initial sequence number plus one, confirming receipt of the SYN. The server also sends its own initial sequence number.
+The server enters SYN-RECEIVED state.
+
+Step 3: ACK
+
+The client receives the SYN-ACK and responds with an ACK packet. The acknowledgment number is set to the server's initial sequence number plus one.
+Upon sending this final ACK, the client enters ESTABLISHED state. The server receives the ACK and also enters ESTABLISHED state. Data transfer can now begin.
+3. UDP (User Datagram Protocol)
+
+UDP is a connectionless transport protocol that prioritizes speed over reliability. It provides minimal service with no guarantee of delivery, ordering, or error recovery.
+
+Key Characteristics:
+
+Connectionless means no handshake occurs before data transmission. Applications can send datagrams immediately without establishing a formal connection.
+
+Unreliable delivery means there are no acknowledgments and no retransmissions. Packets may be dropped by the network, and the sender never receives notification of failure.
+
+No ordering guarantees that datagrams may arrive out of sequence. Each packet is treated independently with no relationship to those sent before or after.
+
+No flow control means UDP does not regulate transmission rates. Senders can transmit at any speed, potentially overwhelming the receiver or network.
+
+Minimal header overhead uses only 8 bytes compared to TCP's 20 bytes, reducing processing overhead and improving throughput for time-sensitive applications.
+
+Common Use Cases: Voice over IP (VoIP), video conferencing, streaming media, online gaming, DNS queries, SNMP, and DHCP. These applications prioritize timeliness over perfect delivery.
+4. TCP vs UDP Comparison
+
+Connection:
+
+TCP establishes a formal connection before data transfer using the three-way handshake. Connection state is maintained throughout the communication.
+
+UDP is connectionless with no handshake. Each datagram is sent independently with no relationship to previous packets.
+
+Reliability:
+
+TCP guarantees delivery through acknowledgment and retransmission mechanisms. The sender receives confirmation for each segment sent.
+
+UDP provides no delivery guarantees. Packets may be silently dropped by the network with no notification to the sender or receiver.
+
+Ordering:
+
+TCP ensures packets arrive in the correct sequence through sequence numbering. Out-of-order packets are buffered until preceding packets arrive.
+
+UDP makes no ordering guarantees. Datagrams may arrive in any order, and applications must handle reordering if required.
+
+Flow Control:
+
+TCP implements sliding window flow control where the receiver advertises available buffer space, preventing sender from overwhelming the receiver.
+
+UDP provides no flow control. Senders may transmit at any rate regardless of receiver capacity.
+
+Error Recovery:
+
+TCP recovers from errors through retransmission of lost or corrupted packets. Checksum failures trigger packet discarding and retransmission.
+
+UDP performs error detection through checksums but provides no recovery. Corrupted packets are discarded with no retransmission.
+
+Header Size:
+
+TCP uses a 20-byte minimum header with options that can increase size.
+
+UDP uses an 8-byte fixed header with no options.
+
+Speed:
+
+TCP is slower due to connection establishment, acknowledgment overhead, and congestion control mechanisms.
+
+UDP is faster with no connection overhead, no acknowledgments, and minimal processing requirements.
+5. Real-World Examples Using Telegram
+
+TCP Example: Telegram Text Message
+
+When you send a text message in Telegram, TCP handles the transmission. The three-way handshake establishes the connection before any message data is sent.
+Your message is segmented into packets, each assigned a sequence number. The server acknowledges every packet received. If a packet is lost during transmission, TCP retransmits it automatically. 
+The server reassembles all packets in the correct order using sequence numbers.
+The user interface reflects this with a single checkmark indicating the message was sent from your device, and a double checkmark confirming the server acknowledged receipt.
+
+UDP Example: Telegram Voice Call
+
+When you speak during a Telegram voice call, UDP handles the transmission. No handshake occurs before sending voice data.
+Your voice is captured, encoded, and divided into small datagrams that are sent immediately without waiting for acknowledgments. If a datagram is lost during transmission,
+it is never retransmitted. This results in a brief audio glitch that is barely noticeable. Datagrams may arrive out of order, but the application can still play them with minimal buffering. 
+The call maintains low latency because there is no overhead for acknowledgments or retransmissions.
+
+Why Voice Calls Use UDP:
+
+Speed is critical for real-time voice communication. TCP introduces latency through handshakes, acknowledgments, and retransmissions.
+Small packet losses in voice calls result in minor audio artifacts that do not significantly impact conversation quality. 
+TCP retransmissions would cause noticeable delays and stuttering as the system pauses to recover lost packets. 
+UDP allows the call to continue smoothly even under imperfect network conditions, prioritizing real-time delivery over perfect reliability.
