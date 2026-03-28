@@ -1,0 +1,192 @@
+OSI Model Explained Using Telegram
+1. Overview of the Seven Layers
+
+The OSI model consists of seven layers that work together to enable network communication.
+Using Telegram as an example provides a practical understanding of how each layer functions when sending a message. 
+Understanding the attack methods at each layer is essential for implementing proper security controls.
+2. Layer 7 - Application
+
+The Application layer is where user interaction occurs and network services are accessed.
+When you use Telegram, this layer is responsible for the application interface and the initial creation of the message.
+
+When you type "Hello" and press send, the Telegram app creates a message object that contains the text, sender ID, recipient ID, and timestamp. 
+The application uses MTProto, which is Telegram's custom protocol, to structure this data for transmission. This layer serves as the entry point for all user-initiated communication.
+
+Attack Methods at Layer 7:
+
+SQL Injection occurs when an attacker injects malicious SQL queries into application input fields. 
+If the application improperly handles user input, the attacker can bypass authentication, extract sensitive data, or modify database contents. 
+This happens when user-supplied data is concatenated directly into SQL statements without sanitization.
+
+Cross-Site Scripting (XSS) involves injecting malicious JavaScript into web applications. When unsanitized input is rendered in a victim's browser, the script executes in that user's context. 
+This allows attackers to steal session cookies, capture keystrokes, or redirect users to phishing sites.
+
+API Abuse occurs when attackers exploit poorly secured application programming interfaces. 
+This includes excessive API calls to cause denial of service, parameter manipulation to access unauthorized data, or injection attacks targeting API endpoints that lack proper validation.
+
+Command Injection happens when an attacker submits operating system commands through application inputs.
+If the application passes unsanitized input to system shells, the attacker can execute arbitrary commands on the underlying server, leading to full system compromise.
+3. Layer 6 - Presentation
+
+The Presentation layer handles data formatting, encryption, and compression. It ensures that data sent from one system can be read by another system regardless of differences in encoding.
+
+In Telegram, this layer encrypts the message to secure it during transit. For standard cloud chats, TLS encryption is used, while secret chats employ end-to-end encryption. 
+The data is also compressed to reduce transmission time, and character encoding is standardized to UTF-8 to ensure proper display across devices.
+
+Attack Methods at Layer 6:
+
+SSL Stripping forces a secure HTTPS connection to downgrade to unencrypted HTTP. An attacker positioned on the network intercepts traffic and rewrites HTTPS links to HTTP.
+When the victim clicks these modified links, the connection remains unencrypted, allowing the attacker to capture all transmitted data including credentials and messages.
+
+Weak Cipher Attacks exploit outdated or vulnerable encryption algorithms. 
+When servers support legacy ciphers such as RC4 or DES, attackers can decrypt captured traffic by exploiting known cryptographic weaknesses. 
+This often occurs through downgrade attacks where the attacker forces the client and server to negotiate the weakest available cipher.
+
+Padding Oracle Attacks target improperly implemented encryption padding validation. By sending modified ciphertext to the server and observing error responses, 
+attackers can systematically decrypt data without knowing the encryption key. This vulnerability exists when servers leak information about padding validity through error messages or timing differences.
+
+Compression Side-Channel Attacks leverage data compression to extract sensitive information.
+Attackers who can control part of the compressed data, such as through web requests, can measure compressed size differences to infer the contents of secrets like session tokens or form values. The CRIME and BREACH attacks target this vulnerability.
+4. Layer 5 - Session
+
+The Session layer manages and maintains connections between applications. It establishes, coordinates, and terminates sessions to keep communication organized.
+
+Telegram uses this layer to attach session tokens that prove your authentication status.
+The connection state is maintained so that you remain logged in even when switching between networks, such as moving from Wi-Fi to cellular. 
+This layer ensures that the ongoing conversation remains continuous and properly associated with your account.
+
+Attack Methods at Layer 5:
+
+Session Hijacking occurs when an attacker steals a valid session token and uses it to impersonate the legitimate user. 
+This is accomplished through various techniques including capturing unencrypted cookies over HTTP, using cross-site scripting to extract tokens from browsers, 
+or predicting session identifiers generated with insufficient randomness.
+
+Session Fixation allows an attacker to set a victim's session token to a known value. The attacker obtains a valid session identifier from the application,
+then tricks the victim into using that specific token, often through phishing links or by injecting the token into the victim's browser. Once the victim authenticates,
+the attacker can use the known session token to gain unauthorized access.
+
+Man-in-the-Middle (MITM) at the session level occurs when an attacker intercepts and manipulates session establishment. 
+By positioning themselves between the client and server, the attacker can observe session token exchanges, modify session negotiation parameters,
+or terminate and re-establish sessions to force weaker security settings.
+
+Session Replay Attacks capture valid session communications and replay them later. Even if the session token itself is encrypted,
+an attacker who records encrypted traffic containing valid session data can replay these captured packets to establish unauthorized sessions or perform actions as the authenticated user.
+5. Layer 4 - Transport
+
+The Transport layer is responsible for reliable or unreliable delivery, error recovery, and data segmentation. It breaks large data streams into manageable segments and reassembles them at the destination.
+
+For Telegram, TCP segments the message into smaller packets suitable for transmission. 
+The source port is a randomly assigned high-numbered port, typically 54321, while the destination port is 443 for HTTPS traffic. 
+Sequence numbers are added to ensure packets can be reordered correctly upon arrival, and a checksum is included to detect any corruption during transit.
+
+Attack Methods at Layer 4:
+
+SYN Flood attacks target the TCP three-way handshake process. The attacker sends a high volume of SYN requests with spoofed source IP addresses that never complete the handshake. 
+The server allocates resources for each pending connection until the connection table fills, preventing legitimate clients from establishing new connections.
+This exhausts server resources and causes denial of service.
+
+Port Scanning is used to discover which services are running on a target system. 
+Attackers send probes to a range of ports and analyze responses to determine open ports, identify service versions, and map the attack surface. 
+SYN scans send SYN packets and analyze responses without completing full connections, making them stealthier than full TCP connects.
+
+TCP Reset Attacks terminate established connections by sending forged TCP RST packets.
+If an attacker can determine the sequence numbers of an active connection, they can inject a reset packet that causes the connection to close immediately. 
+This disrupts ongoing communications and can be used for denial of service or session termination.
+
+UDP Flood attacks overwhelm target systems with high volumes of UDP packets. Unlike TCP, UDP is connectionless and requires no handshake.
+Attackers send large numbers of UDP packets to random ports, causing the target to spend resources checking for listening applications and responding with ICMP destination unreachable messages,
+eventually exhausting system resources.
+
+Amplification Attacks leverage UDP protocols that return larger responses than the original request.
+Attackers spoof the victim's IP address and send small queries to vulnerable services such as DNS, NTP, or Memcached. 
+These services respond with significantly larger data volumes directed at the victim, multiplying the attack traffic and overwhelming the target's bandwidth.
+6. Layer 3 - Network
+
+The Network layer handles routing and logical addressing using IP addresses. It determines the best path for data to travel from source to destination across interconnected networks.
+
+An IP packet is created with the source IP set to your phone's private address, such as 192.168.1.10, and the destination IP set to the Telegram server address, typically 149.154.167.99. 
+The Time to Live (TTL) value is set to 64 to prevent infinite routing loops. 
+The routing table is checked to determine that the destination is not local, so the packet is directed to the default gateway.
+
+Attack Methods at Layer 3:
+
+IP Spoofing involves forging the source IP address in packet headers to disguise the true origin of traffic. 
+Attackers use spoofed IPs to bypass access controls that rely on IP filtering, hide their identity during attacks, or make malicious traffic appear to come from trusted internal sources.
+Spoofed packets are often used in amplification attacks where responses are directed to the victim.
+
+BGP Hijacking exploits the trust-based nature of the Border Gateway Protocol. Attackers announce false route advertisements to neighboring networks, claiming ownership of IP address blocks that belong to legitimate organizations. 
+This causes traffic destined for the legitimate network to be routed through the attacker's infrastructure, enabling interception, surveillance, or blackholing of traffic.
+
+Ping of Death attacks send oversized ICMP packets that exceed the maximum IP packet size.
+When the target system attempts to reassemble the fragmented oversized packet, buffer overflows occur that can cause system crashes, reboots, or arbitrary code execution. 
+Modern systems typically patch this vulnerability, but legacy devices remain susceptible.
+
+Smurf Attacks combine IP spoofing with ICMP echo requests directed at network broadcast addresses. The attacker spoofs the victim's IP address and sends ICMP echo requests to a network's broadcast address.
+All hosts on that network respond to the victim, generating massive volumes of traffic that overwhelm the victim's bandwidth and processing capacity.
+
+Fragmentation Attacks exploit how systems reassemble fragmented IP packets. 
+Attackers send overlapping fragments that cause confusion during reassembly, fragments that never complete a full packet to exhaust reassembly buffers, or tiny fragments that bypass firewall inspection. 
+These techniques can evade intrusion detection systems and cause denial of service conditions.
+7. Layer 2 - Data Link
+
+The Data Link layer manages physical addressing using MAC addresses and provides error detection for frames. It facilitates communication between devices on the same local network.
+
+A frame is constructed with the source MAC address of your phone and the destination MAC address of your router. A Cyclic Redundancy Check (CRC) is added to verify frame integrity.
+For Wi-Fi connections, Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA) is used to prevent data collisions on the wireless medium.
+
+Attack Methods at Layer 2:
+
+ARP Spoofing exploits the Address Resolution Protocol's lack of authentication.
+The attacker sends forged ARP replies associating their MAC address with the IP address of the default gateway or other hosts. Network devices update their ARP caches with this false information,
+causing all traffic intended for the legitimate host to be sent to the attacker instead. 
+This enables man-in-the-middle attacks where the attacker can intercept, modify, or drop all traffic on the local network segment.
+
+MAC Flooding overwhelms a switch's content addressable memory (CAM) table. The attacker sends a high volume of frames with unique source MAC addresses, filling the limited CAM table capacity. 
+When the CAM table is full, the switch fails open and begins flooding all traffic out of all ports, effectively behaving like a hub. 
+This allows the attacker to capture traffic intended for other hosts that would normally be isolated by the switch.
+
+VLAN Hopping allows an attacker to bypass network segmentation enforced by virtual LANs. This is accomplished through switch spoofing where the attacker pretends to be a trunk port, 
+gaining access to traffic from multiple VLANs, or through double tagging where nested VLAN tags cause traffic to traverse VLAN boundaries. 
+Successful VLAN hopping compromises network isolation designed to separate sensitive systems.
+
+Spanning Tree Protocol (STP) attacks manipulate the network's loop prevention mechanism. 
+An attacker with access to a switch port can send Bridge Protocol Data Units (BPDUs) to claim a higher priority in the spanning tree election.
+By forcing themselves to become the root bridge, the attacker can observe traffic that would normally follow different paths, enabling eavesdropping and man-in-the-middle positioning.
+
+DHCP Starvation attacks deplete available IP addresses from DHCP servers. The attacker sends numerous DHCP request messages with spoofed MAC addresses,
+consuming the entire pool of available addresses. Legitimate clients are unable to obtain IP addresses, resulting in denial of service. 
+Attackers often combine this with rogue DHCP server attacks to redirect clients to malicious infrastructure.
+8. Layer 1 - Physical
+
+The Physical layer handles the actual transmission of bits over the physical medium. It converts digital data into signals suitable for the transmission medium.
+
+Your Telegram message is converted from bits into radio waves transmitted at either 2.4GHz or 5GHz frequencies. The router antenna receives these signals and demodulates them back into digital bits.
+This layer includes all hardware components such as cables, network interface cards, antennas, and wireless frequencies.
+
+Attack Methods at Layer 1:
+
+Evil Twin attacks involve setting up a rogue wireless access point that mimics a legitimate network. The attacker broadcasts a beacon with the same SSID as a trusted network,
+often with stronger signal strength. Unsuspecting devices automatically connect to the rogue access point, allowing the attacker to intercept all traffic, capture credentials,
+and inject malicious content into communications.
+
+RF Jamming disrupts wireless communications by transmitting radio frequency interference on the same frequencies used by target networks.
+Attackers overwhelm the 2.4GHz or 5GHz spectrum with noise, causing signal degradation, packet loss, and connection failures. Jamming devices can be low-power and difficult to locate,
+making them effective for targeted denial of service attacks against wireless networks.
+
+Physical Cable Tapping involves gaining physical access to network cabling to intercept data. Attackers attach monitoring devices to exposed network cables,
+fiber optics, or patch panels to capture traffic without disrupting the connection. Optical taps can split fiber signals for passive monitoring, while copper taps may require active bridging. 
+This method requires physical access to cabling infrastructure but can be extremely difficult to detect.
+
+Hardware Implants are malicious devices inserted into network infrastructure. Attackers may install small devices inside network equipment, such as routers, switches,
+or servers, that capture data, establish backdoor access, or provide remote command and control capabilities. These implants can remain undetected for extended periods while exfiltrating sensitive information.
+
+Bluetooth Eavesdropping exploits wireless personal area networks. Attackers use specialized hardware to capture Bluetooth transmissions, including keyboard inputs,
+audio streams, and file transfers. Bluejacking sends unsolicited messages to nearby devices, while Bluesnarfing extracts data from connected devices without authorization.
+9. Complete Journey of a Telegram Message
+
+When you type "Hello" and press send, the message begins at Layer 7 and descends through each successive layer. Each layer adds its own header information through a process called encapsulation.
+
+After passing through Layer 1 as radio waves, the coffee shop router receives the signal. The router processes Layer 2 by verifying the MAC address and CRC.
+It then examines Layer 3 to determine the destination IP. Network Address Translation (NAT) is performed to change the source IP from your private address to the router's public IP.
+
+The packet travels across the internet, passing through multiple routers that each examine the destination IP to determine the next hop. When the Telegram server receives the packet, the reverse process called decapsulation occurs. The server removes headers at each layer, working upward from Layer 1 to Layer 7, until the original message is extracted and delivered to your friend. An acknowledgment then returns along the same path.
