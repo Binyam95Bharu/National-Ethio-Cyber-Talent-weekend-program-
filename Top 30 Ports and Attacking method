@@ -1,0 +1,53 @@
+Attacking Methods and Top 30 Ports
+1. Common Attack Methods by OSI Layer
+Layer	Attack	Description
+7 - Application	SQL Injection, XSS, API Abuse	Malicious input to applications
+6 - Presentation	SSL Stripping, Weak Ciphers	Downgrade encryption
+5 - Session	Session Hijacking, Fixation	Steal session tokens
+4 - Transport	SYN Flood, Port Scanning	Overwhelm resources, discover services
+3 - Network	IP Spoofing, BGP Hijack	Fake source IP, redirect traffic
+2 - Data Link	ARP Spoofing, MAC Flooding	MITM on local network
+1 - Physical	Evil Twin, RF Jamming	Rogue access points, interference
+2. Top 30 Ports
+
+Port	Protocol	Service	     Use
+20	  TCP	      FTP-data	   File transfer data channel
+21   	TCP     	FTP     	   File transfer control
+22	  TCP	      SSH        	 Secure remote access
+23	  TCP	      Telnet	     Remote access (insecure)
+25  	TCP     	SMTP	       Email sending
+53	  TCP/UDP  	DNS	         Domain name resolution
+67	  UDP	      DHCP-server	 IP address assignment
+68	  UDP 	    DHCP-client	 IP address assignment
+80	  TCP	      HTTP	       Web traffic (unencrypted)
+110  	TCP	      POP3	       Email receiving
+123 	UDP	      NTP	         Time synchronization
+135	  TCP	      RPC	         Remote procedure calls
+137  	UDP	      NetBIOS-ns	 Name service
+138 	UDP	      NetBIOS-dgm	 Datagram service
+139 	TCP     	NetBIOS-ssn	 Session service
+143 	TCP	      IMAP	       Email receiving (advanced)
+161 	UDP	      SNMP	       Network monitoring
+162 	UDP	      SNMP-trap	   Network monitoring alerts
+389 	TCP/UDP	  LDAP	       Directory services
+443	  TCP	      HTTPS	       Web traffic (encrypted)
+445	  TCP	      SMB	         Windows file sharing
+465	  TCP    	  SMTPS	       Secure email sending
+587	  TCP	      SMTP	       Email submission
+993	  TCP	      IMAPS	       Secure IMAP
+995 	TCP	      POP3S	       Secure POP3
+1433	TCP	      MSSQL	       Microsoft SQL Server
+3306	TCP	      MySQL	       MySQL database
+3389	TCP	      RDP        	 Remote desktop
+5432	TCP	      PostgreSQL	 PostgreSQL database
+5900	TCP	      VNC	         Virtual network computing
+
+3. Common Attack Tools
+Tool	Purpose
+nmap	Port scanning, network discovery
+wireshark	Packet capture and analysis
+metasploit	Exploitation framework
+hydra	Password brute forcing
+john	Password cracking
+aircrack-ng	Wi-Fi security testing
+burpsuite	Web application testing
