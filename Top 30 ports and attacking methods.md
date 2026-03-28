@@ -1,4 +1,4 @@
-
+<pre>
 Port 20 – FTP (data transfer)
 Port 21 – FTP (control/commands)
 Port 22 – SSH (secure remote login)
@@ -29,6 +29,7 @@ Port 520 – RIP (routing protocol)
 Port 587 – SMTP (secure mail submission)
 Port 993 – IMAPS (secure email access)
 Port 3389 – RDP (remote desktop access)
+</pre>
 ## How Attackers Target Ports (Concept Only)
 Instead of “how to attack,” here’s how attacks generally happen:
 **1. Port Scanning**
