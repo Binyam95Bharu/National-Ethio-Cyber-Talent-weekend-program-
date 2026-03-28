@@ -32,7 +32,7 @@ Port 3389 – RDP (remote desktop access)
 
 ## How Attackers Target Ports (Concept Only)
 Instead of “how to attack,” here’s how attacks generally happen:
-**1. Port Scanning**
+** 1. Port Scanning**
 Attackers check which ports are open using tools (like scanners)
 Open port = possible entry point
 **Defense:**
