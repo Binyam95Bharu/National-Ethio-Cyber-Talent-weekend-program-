@@ -4,7 +4,7 @@ def check_ip(ip):
     try:
         # Validate IP
         ip_obj = ipaddress.IPv4Address(ip)
-        pring(f"\nIP Address: {ip}")
+        print(f"\nIP Address: {ip}")
 
         # Private or public?
         if ip_obj.is_private:
@@ -19,19 +19,19 @@ def check_ip(ip):
             ip_class = "A"
             subnet = "/8"
 
-        elif 128 <= first_octet <= 191:
+        elif 128 <= first_octate <= 191:
             ip_class = "B"
             subnet = "/16"
 
-        elif 192 <= first_octet <= 223:
+        elif 192 <= first_octate <= 223:
             ip_class = "C"
             subnet = "/24"
 
-        elif 224 <= first_octet <= 239:
+        elif 224 <= first_octate <= 239:
             ip_class = "D (Multicast)"
             subnet = "N/A"
 
-        elif 240 <= first_octet <= 255:
+        elif 240 <= first_octate <= 255:
             ip_class = "E (Experimental)"
             subnet = "N/A"
 
