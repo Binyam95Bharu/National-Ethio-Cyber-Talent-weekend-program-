@@ -55,31 +55,31 @@ The `htop` Command
     - F9: **Kill** a selected process directly via a signal menu. 
 ________________________________________________________________________________________________________________________
 Key Differences
-|Feature|top|htop|
-|---|---|---|
-|Default Install|Yes (standard on most distros)|No (usually needs installation)|
-|Visuals|Plain text / monochrome|Colored bars and graphs|
-|Mouse Support|No|Yes|
-|Scrolling|Limited (keyboard only)|Full horizontal/vertical scrolling|
-|Process Tree|Basic (hidden by default)|Rich, interactive tree mode (F5)|
-Nano** is a simple, beginner-friendly command-line text editor for Linux and other Unix-like systems. Unlike more complex editor like Vim, nano is **modeless, meaning you can start typing immediately after opening it without switching between "insert" and "command" modes.
+|Feature                     top                                     |htop
+________________________________________________________________________________________________________________________
+|Default Install      |Yes (standard on most distros)          |No (usually needs installation)|
+|Visuals              |Plain text / monochrome                 |Colored bars and graphs|
+|Mouse Support        |No                                      |Yes|
+|Scrolling            |Limited (keyboard only)                 |Full horizontal/vertical scrolling|
+|Process Tree         |Basic (hidden by default)               |Rich, interactive tree mode (F5)|
 ________________________________________________________________________________________________________________________
 Interface & Navigation
 - Shortcuts: Common commands are listed at the bottom of the screen.
 - Key Symbols:The caret symbol (^) represents the **Ctrl** key, and **M** represents the **Meta** key (usually **Alt** or **Esc).
 - Movement: Use the arrow keys for basic navigation or **Page Up/Down** to scroll.
 _________________________________________________________________________________________________________________________
+
 Essential Shortcuts
-|Task|Shortcut|Description|
-|---|---|---|
-|**Save|Ctrl + O|"Writes Out" the current buffer to the file.
-|Exit|Ctrl + X|Closes nano; prompts to save if changes were made.
-|Help|Ctrl + G|Opens the full built-in help manual.
-|Search|Ctrl + W|"Where is" search tool to find text in the file.
-|Replace|Alt + R|Finds a term and allows you to replace it.
-|Cut Line|Ctrl + K|"Kuts" (deletes) the current line.
-|Paste Line|Ctrl + U|"Uncuts" (pastes) the last cut line.
-|Undo/Redo|Alt + U / E|Undo or redo your last action.
+|Task                                     |Shortcut                          |Description|
+_________________________________________________________________________________________________________________________
+|**Save                                   |Ctrl + O                  "Writes Out" the current buffer to the file.
+|Exit                                     |Ctrl + X                  Closes nano; prompts to save if changes were made.
+|Help                                     |Ctrl + G                  Opens the full built-in help manual.
+|Search                                   |Ctrl + W                  "Where is" search tool to find text in the file.
+|Replace                                  |Alt + R                   Finds a term and allows you to replace it.
+|Cut Line                                 |Ctrl + K                  "Kuts" (deletes) the current line.
+|Paste Line                               |Ctrl + U                  "Uncuts" (pastes) the last cut line.
+|Undo/Redo                                |Alt + U / E               Undo or redo your last action.
 _________________________________________________________________________________________________________________________
 Advanced Tips
 
