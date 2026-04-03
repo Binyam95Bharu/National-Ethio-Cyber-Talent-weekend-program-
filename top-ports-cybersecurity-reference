@@ -1,0 +1,33 @@
+| Port    | Protocol | Service       | Security Risk              |
+| ------- | -------- | ------------- | -------------------------- |
+| 21      | TCP      | FTP           | Anonymous login, weak auth |
+| 22      | TCP      | SSH           | Brute-force attacks        |
+| 23      | TCP      | Telnet        | No encryption              |
+| 25      | TCP      | SMTP          | Email spoofing             |
+| 53      | TCP/UDP  | DNS           | Amplification attacks      |
+| 67/68   | UDP      | DHCP          | Rogue DHCP servers         |
+| 69      | UDP      | TFTP          | No authentication          |
+| 80      | TCP      | HTTP          | Web vulnerabilities        |
+| 110     | TCP      | POP3          | Credential sniffing        |
+| 119     | TCP      | NNTP          | Legacy vulnerabilities     |
+| 123     | UDP      | NTP           | DDoS amplification         |
+| 137-139 | TCP/UDP  | NetBIOS       | Enumeration                |
+| 143     | TCP      | IMAP          | Mail attacks               |
+| 161     | UDP      | SNMP          | Default credentials        |
+| 179     | TCP      | BGP           | Routing manipulation       |
+| 389     | TCP/UDP  | LDAP          | Directory abuse            |
+| 443     | TCP      | HTTPS         | Misconfigurations          |
+| 445     | TCP      | SMB           | Worm exploits              |
+| 465     | TCP      | SMTPS         | Mail abuse                 |
+| 500     | UDP      | ISAKMP        | VPN attacks                |
+| 514     | UDP      | Syslog        | Log injection              |
+| 515     | TCP      | LPD           | Printer exploitation       |
+| 520     | UDP      | RIP           | Routing attacks            |
+| 587     | TCP      | SMTP (Secure) | Phishing                   |
+| 636     | TCP      | LDAPS         | Directory attacks          |
+| 989/990 | TCP      | FTPS          | Misconfigurations          |
+| 993     | TCP      | IMAPS         | Mail attacks               |
+| 995     | TCP      | POP3S         | Credential attacks         |
+| 1433    | TCP      | MSSQL         | SQL attacks                |
+| 1521    | TCP      | Oracle DB     | DB exploitation            |
+| 3306    | TCP      | MySQL         | Weak passwords             |
