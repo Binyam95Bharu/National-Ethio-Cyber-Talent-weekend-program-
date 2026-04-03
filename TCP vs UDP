@@ -1,0 +1,69 @@
+# TCP vs UDP
+
+TCP and UDP are the two main protocols used at the transport layer. They both send data over the network, but they work very differently.
+
+---
+
+## TCP (Transmission Control Protocol)
+
+TCP is connection-based. Before sending data, it sets up a connection between the sender and receiver.
+
+It makes sure:
+- data arrives
+- data is in the correct order
+- missing data is sent again
+
+Because of this, TCP is slower but reliable.
+
+### Used in:
+- Websites (HTTP, HTTPS)
+- File transfer (FTP)
+- Emails
+
+### Simple idea:
+If something is important and you can’t lose data, use TCP.
+
+---
+
+## UDP (User Datagram Protocol)
+
+UDP does not create a connection. It just sends data directly without checking if it arrives or not.
+
+It does NOT:
+- guarantee delivery
+- guarantee order
+- resend lost data
+
+But it is very fast.
+
+### Used in:
+- Video streaming
+- Online games
+- Voice calls (VoIP)
+- DNS
+
+### Simple idea:
+If speed matters more than accuracy, use UDP.
+
+---
+
+## Key Differences
+
+- TCP = reliable but slower  
+- UDP = fast but unreliable  
+
+---
+
+## Real Example
+
+- Opening a website → TCP (you need everything to load correctly)
+- Watching a live stream → UDP (small losses don’t matter, speed does)
+
+---
+
+## Quick Summary
+
+TCP is for accuracy.  
+UDP is for speed.
+
+Both are important, and systems choose based on what they need.
