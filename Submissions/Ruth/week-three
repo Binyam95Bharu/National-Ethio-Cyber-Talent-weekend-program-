@@ -1,0 +1,131 @@
+WEEK-3
+Saterday
+
+Packet
+
+In a network sense, a packet is a small, formatted unit of data that serves as the fundamental "building block" for all internet communication. When you send a large file like a photo or an email, it isn't sent as one massive chunk; instead, it is broken down into these "bite-sized" packets to travel efficiently across the web.
+
+The Real-World Analogy
+The most common way to understand a packet is through the Postal System Analogy:-
+* The Message: Imagine you want to send a 500-page book to a friend, but your local post office only accepts small envelopes.
+* The Packets: You tear out each page and put it into its own separate envelope.
+* The Header (Envelope Label): On the outside of every envelope, you write the sender's address, the receiver's address, and a page number (e.g., "Page 5 of 500").
+* The Delivery: You drop them all in the mailbox. Because they are separate, they might take different delivery trucks or routes—some might go through a different city to avoid traffic—and they might even arrive at your friend’s house out of order.
+* Reassembly: Your friend receives all the envelopes, looks at the page numbers, and puts the book back together in the correct sequence. 
+
+Why Networks Use Packets
+If we didn't use packets, one large file could "clog" a network wire for everyone else until it finished transferring. By using packets:-
+* Multiple people can share the same "wire" simultaneously, as their packets take turns passing through.
+* Damaged data is easier to fix. If one page of your "book" gets lost, the receiver only has to ask you to resend that one page, not the entire 500-page book.
+* Dynamic Routing allows packets to automatically bypass broken or congested parts of the network to find the fastest path.
+
+Structure of a Packet
+Every packet consists of three main parts: 
+   1. Header: Contains metadata like the source(sender) and destination(receiver) IP addresses, the packet's size(metadata), and its sequence number(trarking stamp).
+   2. Payload: The actual "meat" of the data (e.g., a tiny fragment of an image or a few words of an email).
+   3. Trailer (or Footer): Often used for error-checking to ensure the data wasn't corrupted during its journey. 
+________________________________________________________________________________________________________________________
+
+TCP three way hand shake
+
+Think of the TCP Three-Way Handshake as a formal phone call between two people who want to make sure they can hear each other perfectly before sharing any secrets.
+In the networking world, this is how a client (your laptop) and a server (like YouTube) agree to start talking.
+The Real-World Analogy: The "Can You Hear Me?" Test
+
+   1. SYN (The "Hello?" Call):
+   * You: "Hey, I want to talk to you. My starting reference number is 100. Can you hear me?"
+      * Network sense: The client sends a Synchronize packet to the server to initiate the connection.
+   2. SYN-ACK (The "Yes, I Hear You!" Response):
+   * Server: "I hear you loud and clear! I'm ready to talk too. My starting reference number is 5000. I received your 100, so I'm expecting 101 next. Can you hear me?"
+      * Network sense: The server sends a Synchronize-Acknowledgment packet back, confirming it received the first packet and sending its own sync request.
+   3. ACK (The "Great, Let's Talk!" Confirmation):
+   * You: "Got it! I hear you too. I received your 5000, so I'm expecting 5001 next. Let's start the conversation!"
+      * Network sense: The client sends a final Acknowledgment packet. The "virtual circuit" is now open.
+   
+Why do we bother with three steps?
+If we only used two steps (You: "Hi" -> Server: "Hi"), the server wouldn't know if you actually heard its response. By using three steps, both sides confirm:
+
+* The connection is open.
+* The "postage" (sequence numbers) is synchronized so data stays in order.
+* The path is reliable enough for a steady stream of data.
+
+Simple Summary
+
+* Step 1: "Are you there?" (SYN)
+* Step 2: "Yes, I am. Are you there?" (SYN-ACK)
+* Step 3: "Yes. Let's go!" (ACK)
+
+_____________________________________________________________________________________________________________________
+
+DNS request
+In a real-world sense, a DNS (Domain Name System) request is like asking a librarian for the shelf location of a specific book when you only know the title. [1, 2] 
+Computers communicate using numbers called IP addresses (like 192.0.2.1), but humans prefer names (like google.com). A DNS request is the "translation" service that bridges this gap. 
+The Real-World Analogy: The Global Library
+Imagine the internet is a massive, city-wide library. To find a "book" (a website), you follow these steps:
+
+   1. Check Your Own Notes (Local Cache): Before leaving your house, you check your personal notebook to see if you’ve visited this site before and already wrote down its address.
+   2. Ask the Neighborhood Librarian (Recursive Resolver): If you don't have it, you go to your local librarian. They don't know every address, but they know who to ask.
+   3. The Master Index (Root Server): The librarian first asks a master index. The index says, "I don't know the exact address, but for all '.com' books, you need to go to the '.com' section".
+   4. The Section Manager (TLD Server): The librarian goes to the .com section. That manager says, "I don't have the specific shelf, but here is the contact for the 'google.com' office".
+   5. The Official Records (Authoritative Name Server): Finally, the librarian reaches the official "google.com" record-keeper. This person gives the exact shelf number (the IP address).
+   6. The Delivery: The librarian brings that number back to you, and now you can go directly to that "shelf" to see the website.  
+
+Key Components in Plain English
+
+* The Request: The question "What is the IP address for this name?".
+* The Resolver: Your "middleman" (usually your ISP) that does the legwork of asking all those different servers for you.
+* IP Address: The actual "street address" or "phone number" of the server where the website lives.
+* Caching: Like "speed dial" on your phone; your computer remembers the address for a while so it doesn't have to ask the librarian again the next time you visit. 
+_________________________________________________________________________________________________________________
+
+Wireshark
+
+In the networking world, Wireshark is a "packet sniffer" or network protocol analyzer that allows you to see exactly what is happening on your network at a microscopic level. 
+The Real-World Analogy: The Digital Microscope
+Think of Wireshark like a forensic microscope for your internet connection: 
+* The View: When you look through a microscope, you see the tiny cells that make up a leaf. When you "look" through Wireshark, you see the individual packets that make up a website, a video stream, or an email.
+* The X-Ray Vision: Imagine an electrician using a voltmeter to see the electricity moving through a wire. Wireshark does the same for data; it captures the raw "1s and 0s" and translates them into a human-readable format.
+* The Mail Inspector: If the internet is a postal service, Wireshark is like a tool that lets you intercept every single envelope, read the addresses on the outside (headers), and even look at the letter inside (the payload), provided it isn't locked in an encrypted safe.  
+What Does It Actually Do?
+ 1. Captures Live Traffic: It records data in real-time as it travels through your Wi-Fi or Ethernet cable.
+ 2. Filters the Noise: Networks are incredibly "chatty." Wireshark uses powerful filters to hide the thousands of irrelevant packets so you can focus only on a specific conversation (e.g., "show me only traffic from my laptop to Google").
+ 3. Color Codes Everything: To make analysis faster, it automatically highlights different types of traffic (e.g., DNS requests in blue, errors in red) so you can spot problems at a glance.
+ 4. Reconstructs Conversations: It can take hundreds of scattered packets and "follow the stream" to show you a full, reconstructed chat or file transfer as it appeared to the user. 
+ 
+Real-World Use Cases
+* Network Troubleshooting: An IT admin might use it to find out why a website is slow. They can see if the server is taking too long to reply or if packets are getting lost and need to be resent.
+* Cybersecurity: Security pros use it to hunt for "digital fingerprints" of hackers, such as someone trying to guess passwords (brute forcing) or a piece of malware "phoning home" to its creator.
+* App Development: Developers use it to debug their apps. If an app isn't connecting to a database, they use [Wireshark](https://www.wireshark.org/) to see if the request is actually leaving the computer or if the database is sending back an error message.
+* Education: It is the "gold standard" for learning how the internet works by letting students actually see the TCP Three-Way Handshake or DNS requests in action. 
+_____________________________________________________________________________________________________________________
+
+Sunday
+
+Event Viewer is a built-in Microsoft Windows tool that acts as a centralized repository for logging significant system, security, and application events. It provides administrators and technicians with a chronological record of everything happening on a computer, ranging from successful software installations to critical hardware failures.
+
+Core Functions and Capabilities
+The tool is primarily used for monitoring system health and troubleshooting. Its main capabilities include:
+* Viewing Logs: It organizes events into readable categories such as Application (software-related), Security (login attempts and audits), System (Windows component issues), and Setup (installation and updates).
+* Filtering and Searching: Users can narrow down thousands of entries by date, severity level, or specific Event IDs—unique numbers that identify exact types of occurrences.
+* Creating Custom Views: You can define specific filters, such as seeing all critical errors from the last 24 hours, and save them as permanent views for quick monitoring.
+* Remote Monitoring: It can be configured to subscribe to events from other computers on a network, allowing for centralized management of multiple machines.
+* Automating Actions: Using Task Scheduler, you can trigger specific programs or scripts to run whenever a particular Event ID is logged.
+
+Understanding Event Severity Levels
+Each entry in the log is assigned a severity level to help you prioritize issues. A Critical level indicates a major failure requiring immediate attention, such as an unexpected system reboot (Event ID 41).
+ An Error level signifies a significant problem, like a service failing to load at startup, though the system may still run. 
+ Warnings serve as indicators of potential future problems, such as low disk space alerts. 
+ Information logs represent normal, successful operations, such as a network driver loading successfully. 
+ Finally, Audits track security events, documenting successful or failed user login attempts.
+ 
+Common Use Cases
+* Troubleshooting Crashes: If your computer freezes or shows a "Blue Screen of Death," you can check the System logs for Critical errors around that exact timestamp to find the cause.
+* Security Auditing: Administrators use it to track who logged in and when, or to detect brute-force attacks by monitoring repeated failed logins (Event ID 4625).
+* Performance Monitoring: Identifying resource bottlenecks or recurring service failures that might be slowing down the system.
+* Compliance: Maintaining historical records of system activity to meet regulatory standards like GDPR or HIPAA.
+
+
+
+
+
+
