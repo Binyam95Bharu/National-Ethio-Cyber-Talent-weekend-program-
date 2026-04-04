@@ -1,0 +1,150 @@
+Vim (short for **Vi IMproved**): keyboard-driven text editor used in Linux and Unix-like systems. Unlike standard editors, it is **modal**, meaning keys perform different actions depending on which "mode" it operating on.
+- Normal Mode (Default):** For navigation and executing commands (e.g., copying, deleting). Press `Esc` to return here from any other mode.
+- **Insert Mode:** For typing text normally. Press `i` in Normal Mode to enter.
+- **Command-Line Mode:** For saving, quitting, and advanced settings. Press `:` in Normal Mode to enter.
+- **Visual Mode:** For selecting blocks of text to manipulate (cut/copy). Press `v` for characters, `V` for lines, or `Ctrl+v` for blocks
+________________________________________________________________________________________________________________________
+Basic Commands Reference
+
+| Action          | Command        | Explanation                                                |
+| --------------- | -------------- | ---------------------------------------------------------- |
+| Open File        `vim filename`       Opens an existing file or creates a new one.               
+| Save              :w                  W**rites (saves) changes to the disk.                    
+| **Quit            :q                  Q**uits the editor (fails if there are unsaved changes). 
+| **Save & Quit     :wq` or :x`         Saves and exits in one step.                               
+| Force Quit        :q!                 Quits without saving any changes.                          
+| Undo               u                  U**ndoes the last action.                                
+| **Redo           Ctrl + r             R**edoes the action you just undid.  
+________________________________________________________________________________________________________________________
+**Navigation & Editing
+In Normal Mode, you use specific keys to move around without mouse around.
+- Basic Movement:** `h` (left), `j` (down), `k` (up), `l` (right).
+- **Word Jumps:** `w` (start of next word), `b` (start of previous word), `e` (end of current word).
+- **Line Ends:** `0` (beginning of line), `$` (end of line).
+- **File Ends:** `gg` (top of file), `G` (bottom of file).
+- **Deleting:** `x` (character), `dw` (word), `dd` (entire line).
+- **Copy/Paste:** `yy` (yank/copy line), `p` (paste after cursor), `P` (paste before cursor). 
+ **Search and Replace
+- Search:** Type `/` followed by your word (e.g., `/error`) and press `Enter`. Use `n` for next match and `N` for previous.
+- **Global Replace:** `:%s/old/new/g` replaces every occurrence of "old" with "new" in the entire file.
+**top and htop :- are command-line utilites used for real-time system monitors in Linux, displaying CPU usage, memory consumption, and list of running processes.
+________________________________________________________________________________________________________________________
+The `top` Command
+`top` (Table of Processes) is the traditional, built-in tool found on almost every Unix-like system. 
+- Availability:** Pre-installed by default; no manual installation is usually required.
+- **Interface:** Basic, monochrome text-based display.
+- **Key Shortcuts (Interactive):
+    - P: Sort by **P**rocessor (CPU) usage.
+    - M: Sort by **M**emory usage.
+    - k: **K**ill a process (requires entering the PID).
+    - q: **Q**uit the application.
+    - z: Toggle color/monochrome mode. 
+________________________________________________________________________________________________________________________
+The `htop` Command
+
+`htop` is a modern, interactive process viewer that serves as an enhanced alternative to `top`. 
+
+- Installation:** Usually requires manual installation (e.g., `sudo apt install htop`).
+- **Interface:** Features a color-coded UI with visual bar graphs for CPU cores, RAM, and Swap.
+- **Interactive Features:** Supports mouse clicking and scrolling (vertical and horizontal) to see full command lines.
+- **Function Key Shortcuts:
+    - F3: **Search** for a specific process.
+    - F4: **Filter** processes by name.
+    - F5: Toggle **Tree view** to show parent/child relationships.
+    - F6: Open the **Sort** menu to select columns easily.
+    - F9: **Kill** a selected process directly via a signal menu. 
+________________________________________________________________________________________________________________________
+Key Differences
+|Feature                     top                                     |htop
+________________________________________________________________________________________________________________________
+|Default Install      |Yes (standard on most distros)          |No (usually needs installation)|
+|Visuals              |Plain text / monochrome                 |Colored bars and graphs|
+|Mouse Support        |No                                      |Yes|
+|Scrolling            |Limited (keyboard only)                 |Full horizontal/vertical scrolling|
+|Process Tree         |Basic (hidden by default)               |Rich, interactive tree mode (F5)|
+________________________________________________________________________________________________________________________
+Interface & Navigation
+- Shortcuts: Common commands are listed at the bottom of the screen.
+- Key Symbols:The caret symbol (^) represents the **Ctrl** key, and **M** represents the **Meta** key (usually **Alt** or **Esc).
+- Movement: Use the arrow keys for basic navigation or **Page Up/Down** to scroll.
+_________________________________________________________________________________________________________________________
+
+Essential Shortcuts
+|Task                                     |Shortcut                          |Description|
+_________________________________________________________________________________________________________________________
+|**Save                                   |Ctrl + O                  "Writes Out" the current buffer to the file.
+|Exit                                     |Ctrl + X                  Closes nano; prompts to save if changes were made.
+|Help                                     |Ctrl + G                  Opens the full built-in help manual.
+|Search                                   |Ctrl + W                  "Where is" search tool to find text in the file.
+|Replace                                  |Alt + R                   Finds a term and allows you to replace it.
+|Cut Line                                 |Ctrl + K                  "Kuts" (deletes) the current line.
+|Paste Line                               |Ctrl + U                  "Uncuts" (pastes) the last cut line.
+|Undo/Redo                                |Alt + U / E               Undo or redo your last action.
+_________________________________________________________________________________________________________________________
+Advanced Tips
+
+- Open at Specific Line: Use `nano +line_number filename` to jump straight to a specific line.
+- Read-Only Mode: Open a file with `nano -v filename` to prevent accidental edits.
+- Disable Line Wrapping: When editing system configuration files, use `nano -w filename` to prevent automatic word wrapping, which can break configs.
+__________________________________________________________________________________________________________________________
+
+Sunday
+
+Network: a collection of two or more interconnected devices (such as computers, servers, or smartphones) that communicate with each other to share resources and information
+
+networks are classified by the geographic area they cover, ranging from a single person to the entire globe. The primary types are **PAN**, **LAN**, **MAN**, and **WAN**. 
+
+1. PAN (Personal Area Network)
+
+- Definition: The smallest network type, centered around an individual person.
+- Purpose: Connecting personal devices like smartphones, tablets, and wearables for data sharing or synchronization.
+- Technology: Primarily uses **Bluetooth**, NFC, or Infrared 
+- Pros: Highly portable, cost-effective, and energy-efficient. 
+
+2. LAN (Local Area Network)
+
+- Definition: Connects devices within a limited area like a single home, office building, or school.
+- Purpose: Sharing resources such as files, printers, and internet access among local users.
+- Technology: Common standards include **Ethernet** (wired) and **Wi-Fi** (wireless, often called **WLAN**) .
+- Pros: Fast data transfer and high security since it's typically private. 
+
+3. MAN (Metropolitan Area Network)
+
+- Definition: An intermediate network that covers an entire city or a large campus .
+- Purpose: Connects multiple LANs together to form a larger network for urban-scale communication .
+- Technology: Often uses high-capacity backbones like **fiber optics** or microwave links .
+- Pros: Efficient for linking different branches of a company within the same city. 
+
+4. WAN (Wide Area Network)
+- Definition: The largest network type, covering vast distances across countries or continents.
+- Purpose: Facilitates global communication and remote access to resources.
+- Technology: Utilizes satellites, leased telephone lines, and fiber optic backbones.
+- Pros: Provides nearly unlimited connectivity; the **Internet** is the most well-known public WAN
+___________________________________________________________________________________________________________________________
+IP address (Internet Protocol address) 
+it is a unique numerical label assigned to every device on a network. It serves two main purposes: identifying the device and providing its location so that data packets can be sent to the correct destination.
+
+IP Address Classes
+Traditionally, IPv4 addresses (32-bit numbers usually written as four decimal segments like 192.168.1.1) were divided into five classes (A through E) to accommodate networks of different sizes. The class is determined by the value of the first octet. Usable host can be calculated using $2^n - 2$
+
+| Class [3, 8, 9, 10, 11] | First Octet Range | Default Subnet Mask | Use Case                                        |
+| ----------------------- | ----------------- | ------------------- | ----------------------------------------------- |
+| Class A                 | 1 – 126           | 255.0.0.0           | Very large networks (e.g., global corporations) |
+| Class B                 | 128 – 191         | 255.255.0.0         | Medium to large networks (e.g., universities)   |
+| Class C                 | 192 – 223         | 255.255.255.0       | Small networks (e.g., home or small office)     |
+| Class D                 | 224 – 239         | N/A                 | Reserved for Multicast (sending data to groups) |
+| Class E                 | 240 – 255         | N/A                 | Reserved for Experimental and research use      |
+
+__________________________________________________________________________________________________________________________
+## Public vs. Private IP Addresses
+
+Addresses are also categorized by where they are used:
+
+- Public IP: Assigned by your ISP and visible to the entire internet.
+- Private IP: Used only within your local network (LAN) and not routable on the public internet. Common ranges include:
+    
+    - Class A: 10.0.0.0 – 10.255.255.255
+    - Class B: 172.16.0.0 – 172.31.255.255
+    - Class C: 192.168.0.0 – 192.168.255.255
+ Shift to IPv6
+Because the world ran out of unique 32-bit IPv4 addresses, IPv6 was introduced. It uses a 128-bit format (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334) and provides a virtually infinite number of unique addresses, eliminating the need for complex address classes in modern networking.

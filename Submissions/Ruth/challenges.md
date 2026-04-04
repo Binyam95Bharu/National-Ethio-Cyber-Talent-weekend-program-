@@ -1,0 +1,8 @@
+!img 1(IMAGES/challenge_3.jpeg)
+!img 2(IMAGES/challenge_1.txt.jpeg)
+!img 3(IMAGES/challenge_2.txt.jpeg)
+!img 4(IMAGES/imgchallengeF1.jpeg)
+!img 5(IMAGES/imgchallengeF1+.jpeg)
+!img 6(IMAGES/imgchallengeF1&F3.jpeg)
+!img 7(IMAGES/imgchallengeF2.jpeg)
+!img 8(IMAGES/imgchallengeF4.jpeg)
