@@ -1,0 +1,93 @@
+import socket
+import threading
+from queue import Queue
+from datetime import datetime
+
+THREAD_COUNT = 50
+port_queue = Queue()
+print_lock = threading.Lock()
+
+open_ports = []
+
+
+def resolve_target(target):
+    try:
+        return socket.gethostbyname(target)
+    except socket.gaierror:
+        print("[!] Could not resolve hostname")
+        return None
+
+
+def grab_banner(sock):
+    try:
+        sock.send(b"HEAD / HTTP/1.0\r\n\r\n")
+        banner = sock.recv(1024)
+        return banner.decode(errors="ignore").strip()
+    except:
+        return None
+
+
+def scan_port(ip):
+    while not port_queue.empty():
+        port = port_queue.get()
+
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(2)
+
+            result = sock.connect_ex((ip, port))
+
+            if result == 0:
+                banner = grab_banner(sock)
+
+                with print_lock:
+                    open_ports.append(port)
+                    if banner:
+                        print(f"[+] {port}/tcp OPEN | {banner[:50]}")
+                    else:
+                        print(f"[+] {port}/tcp OPEN")
+
+            sock.close()
+
+        except:
+            pass
+
+        port_queue.task_done()
+
+
+def main():
+    target = input("Enter target (IP or domain): ")
+    start_port = int(input("Start port: "))
+    end_port = int(input("End port: "))
+
+    ip = resolve_target(target)
+    if not ip:
+        return
+
+    print(f"\nScanning {target} ({ip})")
+    print("Started at:", datetime.now())
+
+    for port in range(start_port, end_port + 1):
+        port_queue.put(port)
+
+    threads = []
+    for _ in range(THREAD_COUNT):
+        t = threading.Thread(target=scan_port, args=(ip,))
+        t.start()
+        threads.append(t)
+
+    port_queue.join()
+
+    print("\nScan complete.")
+    print("Finished at:", datetime.now())
+
+    # Summary
+    if open_ports:
+        print("\nOpen ports:")
+        print(", ".join(str(p) for p in sorted(open_ports)))
+    else:
+        print("\nNo open ports found.")
+
+
+if __name__ == "__main__":
+    main()
