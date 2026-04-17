@@ -1,0 +1,71 @@
+## 🌐 What is a Subnet?
+
+A subnet (subnetwork) is a logical division of a larger IP network into smaller, separate networks.
+
+---
+
+## 🧠 Definition
+
+A subnet is a range of IP addresses defined by a subnet mask, used to organize and isolate parts of a network.
+
+---
+
+## 🔧 How It Works
+
+An IP address has two parts:
+- Network part → identifies the subnet
+- Host part → identifies devices inside the subnet
+
+CIDR notation (e.g., /24, /26) determines the split.
+
+---
+
+## 📊 Example
+
+Network:
+192.168.1.0/24
+
+- Total IPs: 256
+- All devices are in one network
+
+Subnetted:
+192.168.1.0/26
+
+- Creates 4 subnets:
+  - 192.168.1.0 – 63
+  - 192.168.1.64 – 127
+  - 192.168.1.128 – 191
+  - 192.168.1.192 – 255
+
+---
+
+## 📐 Formula (Hosts per Subnet)
+
+Hosts = 2^h - 2
+
+h = number of host bits
+
+---
+
+## 🔐 Why Subnetting is Important
+
+- Improves network performance
+- Enhances security by isolating systems
+- Reduces broadcast traffic
+- Helps control access between network segments
+
+---
+
+## ⚠️ Key Insight
+
+Without subnetting:
+- One compromised device can affect the whole network
+
+With subnetting:
+- Attacks are contained within a smaller segment
+
+---
+
+## 🧠 Summary
+
+A subnet is a smaller, controlled section of a network used to improve organization, performance, and security.
